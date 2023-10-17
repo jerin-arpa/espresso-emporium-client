@@ -123,7 +123,7 @@ const AddCoffee = () => {
                         </div>
 
                         <div className="form-control mt-6">
-                            <input className="btn btn-neutral" type="submit" value="Add Coffee" />
+                            <input className="btn bg-[#D2B48C] border-0 text-white" type="submit" value="Add Coffee" />
                         </div>
                     </form>
                 </div>

@@ -129,7 +129,7 @@ const UpdateCoffee = () => {
                         </div>
 
                         <div className="form-control mt-6">
-                            <input className="btn btn-neutral" type="submit" value="Update Coffee" />
+                            <input className="btn bg-[#D2B48C] border-0 text-white" type="submit" value="Update Coffee" />
                         </div>
                     </form>
                 </div>
