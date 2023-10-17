@@ -2,9 +2,43 @@ import PropTypes from 'prop-types';
 import { AiFillEye } from 'react-icons/ai';
 import { BsFillPencilFill } from 'react-icons/bs';
 import { MdDelete } from 'react-icons/md';
+import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
 
 const CoffeeCard = ({ coffee }) => {
-    const { name, supplier, category, taste, quantity, photo } = coffee;
+    const { _id, name, supplier, category, taste, quantity, photo } = coffee;
+
+
+    const handleDelete = _id => {
+        console.log(_id);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`http://localhost:5000/coffee/${_id}`)
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data);
+                            if (data.deletedCount > 0) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your Coffee has been deleted.',
+                                    'success'
+                                )
+                            }
+                        })
+                }
+            })
+    }
+
 
     return (
         <div>
@@ -25,10 +59,12 @@ const CoffeeCard = ({ coffee }) => {
                         <button className="btn text-2xl bg-yellow-600 text-white">
                             <AiFillEye></AiFillEye>
                         </button>
-                        <button className="btn text-2xl bg-black text-white">
-                            <BsFillPencilFill></BsFillPencilFill>
-                        </button>
-                        <button className="btn text-2xl bg-red-500 text-white">
+                        <Link to={`/updateCoffee/${_id}`}>
+                            <button className="btn text-2xl bg-black text-white">
+                                <BsFillPencilFill></BsFillPencilFill>
+                            </button>
+                        </Link>
+                        <button onClick={() => handleDelete(_id)} className="btn text-2xl bg-red-500 text-white">
                             <MdDelete></MdDelete>
                         </button>
                     </div>
