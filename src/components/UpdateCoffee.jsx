@@ -1,5 +1,8 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
 const UpdateCoffee = () => {
 
@@ -52,7 +55,18 @@ const UpdateCoffee = () => {
 
     return (
         <div>
-            <div className="hero container mx-auto">
+            <Navbar></Navbar>
+
+            <div className='container mx-auto px-10 mt-10 flex gap-3'>
+                <div className='flex items-center'>
+                    <Link to='/'>
+                        <AiOutlineArrowLeft></AiOutlineArrowLeft>
+                    </Link>
+                </div>
+                <h3 className='font-Rancho text-2xl'>Back to Home</h3>
+            </div>
+
+            <div className="hero container mx-auto mb-10">
                 <div className="w-full">
                     <form onSubmit={handleUpdateCoffee} className="bg-gray-100 p-10 rounded-xl m-10">
                         <h2 className="text-2xl font-bold text-center mb-5">Update {name} Coffee</h2>
@@ -120,6 +134,7 @@ const UpdateCoffee = () => {
                     </form>
                 </div>
             </div>
+            <Footer></Footer>
         </div>
     );
 };

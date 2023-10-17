@@ -47,19 +47,21 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
 
     return (
         <div>
-            <div className='bg-gray-50 flex justify-between p-5 rounded-xl gap-5'>
-                <img src={photo} alt="" />
-                <div className='flex items-center'>
+            <div className='bg-gray-50 grid grid-cols-6 justify-between p-5 rounded-xl gap-14 h-full'>
+                <div className='col-span-2'>
+                    <img className='h-full' src={photo} alt="" />
+                </div>
+                <div className='flex items-center col-span-3'>
                     <div>
                         <h2 className='text-2xl font-bold mb-3'>{name}</h2>
-                        <p className='text-lg font-bold'>{supplier}</p>
-                        <p className='text-lg font-bold'>{category}</p>
-                        <p className='text-lg font-bold'>{taste}</p>
-                        <p className='text-lg font-bold'>{quantity}</p>
+                        <p className='text-lg'>{supplier}</p>
+                        <p className='text-lg'>{category}</p>
+                        <p className='text-lg'>{taste}</p>
+                        <p className='text-lg'>{quantity}</p>
                     </div>
                 </div>
 
-                <div className='flex items-center'>
+                <div className='flex items-center col-span-1'>
                     <div className="btn-group btn-group-vertical space-y-4">
                         <button className="btn text-2xl bg-yellow-600 text-white">
                             <AiFillEye></AiFillEye>
