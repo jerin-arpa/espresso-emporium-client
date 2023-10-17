@@ -2,8 +2,12 @@ import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { AiOutlineArrowLeft } from "react-icons/ai";
+import { useContext } from "react";
+import { AuthContext } from "../provider/AuthProvider";
 
 const SignUp = () => {
+
+    const { createUser } = useContext(AuthContext);
 
     const handleSignUp = e => {
         e.preventDefault();
@@ -12,6 +16,15 @@ const SignUp = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(name, email, password);
+
+
+        createUser(email, password)
+            .then(result => {
+                console.log(result.user);
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
 
