@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 
-const CoffeeCard = ({ coffee }) => {
+const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
     const { _id, name, supplier, category, taste, quantity, photo } = coffee;
 
 
@@ -21,9 +21,12 @@ const CoffeeCard = ({ coffee }) => {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
         })
+
             .then((result) => {
                 if (result.isConfirmed) {
-                    fetch(`http://localhost:5000/coffee/${_id}`)
+                    fetch(`http://localhost:5000/coffee/${_id}`, {
+                        method: 'DELETE',
+                    })
                         .then(res => res.json())
                         .then(data => {
                             console.log(data);
@@ -33,6 +36,8 @@ const CoffeeCard = ({ coffee }) => {
                                     'Your Coffee has been deleted.',
                                     'success'
                                 )
+                                const remaining = coffees.filter(cof => cof._id !== _id)
+                                setCoffees(remaining);
                             }
                         })
                 }
@@ -76,6 +81,8 @@ const CoffeeCard = ({ coffee }) => {
 
 CoffeeCard.propTypes = {
     coffee: PropTypes.object,
+    coffees: PropTypes.array,
+    setCoffees: PropTypes.func,
 };
 
 export default CoffeeCard;
