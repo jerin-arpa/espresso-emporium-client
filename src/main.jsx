@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <App></App>,
     errorElement: <ErrorPage></ErrorPage>,
-    loader: () => fetch('http://localhost:5000/coffee'),
+    loader: () => fetch('https://espresso-emporium-server-gq431ys2l-ismat-jerins-projects.vercel.app/coffee'),
   },
   {
     path: '/addCoffee',
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
   {
     path: '/updateCoffee/:id',
     element: <UpdateCoffee></UpdateCoffee>,
-    loader: ({ params }) => fetch(`http://localhost:5000/coffee/${params.id}`),
+    loader: ({ params }) => fetch(`https://espresso-emporium-server-gq431ys2l-ismat-jerins-projects.vercel.app/coffee/${params.id}`),
   },
   {
     path: '/signIn',

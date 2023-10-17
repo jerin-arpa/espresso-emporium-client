@@ -13,7 +13,7 @@ const Navbar = () => {
                             <img className='w-20' src={logo} alt="" />
                         </div>
                         <div className='flex items-center mt-7'>
-                            <h1 className="mb-5 text-5xl font-bold text-white font-Rancho">Expresso Emporium</h1>
+                            <h1 className="mb-5 text-5xl font-bold text-white font-Rancho">Espresso Emporium</h1>
                         </div>
                     </div>
 

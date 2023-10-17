@@ -2,9 +2,13 @@ import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { AiOutlineArrowLeft } from "react-icons/ai";
+import { useContext } from "react";
+import { AuthContext } from "../provider/AuthProvider";
 
 
 const SignIn = () => {
+
+    const { signInUser } = useContext(AuthContext);
 
     const handleSignIn = e => {
         e.preventDefault();
@@ -12,6 +16,14 @@ const SignIn = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+
+        signInUser(email, password)
+            .then(result => {
+                console.log(result.user)
+            })
+            .catch(error => {
+                console.error(error);
+            })
     }
 
     return (
