@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
 
@@ -21,6 +22,29 @@ const SignUp = () => {
         createUser(email, password)
             .then(result => {
                 console.log(result.user);
+
+                // new user has been created
+                const createdAt = result.user?.metadata?.creationTime;
+                const user = { email, createdAt: createdAt };
+                fetch('http://localhost:5000/user', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(user)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.insertedId) {
+                            Swal.fire({
+                                title: 'Success!',
+                                text: 'Account Created successfully',
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            })
+                        }
+                    })
             })
             .catch(error => {
                 console.log(error);
@@ -71,7 +95,7 @@ const SignUp = () => {
 
                             <div className="flex gap-3 mt-5">
                                 <div className='flex items-center'>
-                                    <input className='checkbox checkbox-warning checkbox-xs md:checkbox-sm' type="checkbox" name="terms" id="" />
+                                    <input className='checkbox  checkbox-xs md:checkbox-sm' type="checkbox" name="terms" id="" />
                                 </div>
                                 <label htmlFor="terms" className="text-xs md:text-lg">Accept our terms and conditions</label>
                             </div>
